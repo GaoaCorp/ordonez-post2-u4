@@ -1,0 +1,159 @@
+/* ══════════════════════════════════════════
+   Programación Web — Unidad 4: JavaScript Básico
+   Post-Contenido 2 — Formulario de Registro con Validación
+   Gustavo Adolfo Ordoñez Aguilar
+   ══════════════════════════════════════════ */
+
+/* ── Reset y variables ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --primary   : #065A82;
+  --secondary : #1C7293;
+  --dark      : #21295C;
+  --bg        : #F0F4F8;
+  --white     : #FFFFFF;
+  --text      : #222222;
+  --grey      : #808080;
+  --border    : #CCCCCC;
+  --error     : #C62828;
+  --exito     : #2E7D32;
+  --radius    : 8px;
+  --shadow    : 0 4px 20px rgba(0,0,0,0.10);
+}
+
+html { font-size: 16px; }
+body {
+  font-family : Arial, Helvetica, sans-serif;
+  background  : var(--bg);
+  color       : var(--text);
+  min-height  : 100vh;
+  display     : flex;
+  align-items : center;
+  justify-content: center;
+  padding     : 2rem 1rem;
+}
+
+/* ── Contenedor principal ── */
+.contenedor {
+  background    : var(--white);
+  border-radius : 12px;
+  box-shadow    : var(--shadow);
+  padding       : 2.5rem 2rem;
+  width         : 100%;
+  max-width     : 480px;
+}
+
+.contenedor h1 {
+  font-size     : 1.6rem;
+  color         : var(--dark);
+  margin-bottom : 0.25rem;
+  text-align    : center;
+}
+
+.subtitulo {
+  font-size   : 0.82rem;
+  color       : var(--grey);
+  text-align  : center;
+  margin-bottom: 1.75rem;
+}
+
+/* ── Grupos de campo ── */
+.campo-grupo {
+  display       : flex;
+  flex-direction: column;
+  margin-bottom : 1.1rem;
+}
+
+.campo-grupo label {
+  font-size     : 0.88rem;
+  font-weight   : 700;
+  color         : var(--primary);
+  margin-bottom : 0.35rem;
+}
+
+/* ── Inputs ── */
+.campo-grupo input {
+  padding       : 0.6rem 0.85rem;
+  border        : 2px solid var(--border);
+  border-radius : var(--radius);
+  font-size     : 0.95rem;
+  font-family   : inherit;
+  color         : var(--text);
+  background    : var(--white);
+  transition    : border-color 0.2s, box-shadow 0.2s;
+  outline       : none;
+}
+
+.campo-grupo input:focus {
+  border-color : var(--primary);
+  box-shadow   : 0 0 0 3px rgba(6, 90, 130, 0.2);
+}
+
+/* ── Estados válido e inválido ── */
+.campo-grupo input.valido {
+  border-color : var(--exito);
+  box-shadow   : 0 0 0 2px rgba(46, 125, 50, 0.15);
+}
+
+.campo-grupo input.invalido {
+  border-color : var(--error);
+  box-shadow   : 0 0 0 2px rgba(198, 40, 40, 0.15);
+}
+
+/* ── Mensajes de error ── */
+.msg-error {
+  font-size   : 0.8rem;
+  color       : var(--error);
+  margin-top  : 0.25rem;
+  min-height  : 1rem;
+  display     : none;
+}
+
+.msg-error.visible {
+  display : block;
+}
+
+/* ── Indicador de fortaleza de contraseña ── */
+#fortaleza {
+  font-size   : 0.8rem;
+  font-weight : 700;
+  margin-top  : 0.3rem;
+  display     : block;
+  transition  : color 0.2s;
+}
+
+/* ── Botón de envío ── */
+#btn-registrar {
+  width         : 100%;
+  padding       : 0.75rem;
+  margin-top    : 0.5rem;
+  background    : var(--primary);
+  color         : var(--white);
+  border        : none;
+  border-radius : var(--radius);
+  font-size     : 1rem;
+  font-weight   : 700;
+  cursor        : pointer;
+  transition    : background 0.2s, transform 0.1s;
+}
+#btn-registrar:hover  { background: var(--secondary); }
+#btn-registrar:active { transform: scale(0.98); }
+
+/* ── Mensaje de éxito ── */
+#mensaje-exito {
+  margin-top    : 1rem;
+  padding       : 0.85rem 1rem;
+  border-radius : var(--radius);
+  font-size     : 0.95rem;
+  font-weight   : 700;
+  text-align    : center;
+}
+
+#mensaje-exito.oculto  { display: none; }
+#mensaje-exito.visible {
+  display    : block;
+  background : #E8F5E9;
+  color      : var(--exito);
+  border     : 1px solid var(--exito);
+}
